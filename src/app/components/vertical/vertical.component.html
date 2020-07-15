@@ -1,5 +1,6 @@
 <div class="animate__animated animate__bounceInDown">
     <div class="survey-container">
+       <form [formGroup]="formVertical">
         <div class="row mb-4">
             <div class="col-12 text-center">
                 <h2 class="bg-orange">Selecciona tu linea de negocio</h2>
@@ -9,23 +10,40 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="exampleFormControlSelect2">Vertical</label>
-                <select class="form-control" id="exampleFormControlSelect2">
-                    <option>Hoteleria</option>
-                    <option>Educacion</option>
-                    <option>Salud</option>
-                    <option>Retail</option>
-                    <option>Transportes</option>
-                    <option>Terminales</option>
+                <select class="form-control" id="vertical"
+                        formControlName="vertical"
+                        [class.is-invalid]="verticalNoValido">
+                    <option [value]="">Seleccionar...</option>
+                    <option [value]="1">Hoteleria</option>
+                    <option [value]="2">Educacion</option>
+                    <option [value]="3">Salud</option>
+                    <option [value]="4">Retail</option>
+                    <option [value]="5">Transportes</option>
+                    <option [value]="6">Terminales</option>
                 </select>
+                <div *ngIf="verticalNoValido" class="invalid-feedback">
+                    Este campo es requerido.
+                </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="exampleFormControlSelect2">Tipo de servicio </label>
-                <select class="form-control" id="exampleFormControlSelect2">
-                    <option>Servicio adminitrado</option>
-                    <option>Venta</option>
+                <select class="form-control" id="servicio"
+                        formControlName="servicio"
+                        [class.is-invalid]="servicioNoValido">
+                    <option [value]="">Seleccionar...</option>
+                    <option [value]="1">Servicio administrado</option>
+                    <option [value]="2">Venta</option>
                 </select>
+                <div *ngIf="servicioNoValido" class="invalid-feedback">
+                    Este campo es requerido.
+                </div>
             </div>
         </div>
-        <button (click)="survey_enlace()" class="btn btn-primary">Continuar</button>
+       </form>
+        <div class="row mt-5">
+            <div class="col-2 offset-sm-9">
+                <button (click)="survey_enlace()" class="btn btn-primary btn-block">Continuar</button>
+            </div>
+        </div>
     </div>
 </div>

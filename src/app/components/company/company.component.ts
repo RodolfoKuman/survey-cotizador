@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-company',
@@ -43,6 +43,7 @@ export class CompanyComponent implements OnInit {
       && this.email != '' && this.phone != ''){
         
         if(this.checkForm()){
+          console.log(this.formCompany.value);
           this.router.navigate(['servicio']);
         }
         

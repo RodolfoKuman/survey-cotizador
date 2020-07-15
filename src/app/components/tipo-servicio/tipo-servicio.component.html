@@ -23,28 +23,30 @@
                 </div>
                 <div class="form-group col-md-2">
                     <div class="custom-control custom-checkbox">
-                        <input formControlName="cctv"  type="checkbox" class="custom-control-input" id="checKCCTV">
+                        <input formControlName="cctv" (change)="validationCCTV()"  type="checkbox" class="custom-control-input" id="checKCCTV">
                         <label class="custom-control-label" for="checKCCTV">CCTV</label>
                     </div> 
                 </div> 
-                <div class="form-inline col-md-6">
+                <div class="form-inline col-md-6" *ngIf="cctv == true">
                     <div class="md-form">
-                        <label for="internas">Antenas internas</label>
+                        <label for="internas">Camaras internas</label>
                         <input type="number" class="form-control" id="internas" name="internas"
-                               formControlName="antenas_internas"
-                               [class.is-invalid]="antenas_internas"
+                               formControlName="camaras_internas"
+                               [(ngModel)]="camaras_internas"
+                               [class.is-invalid]="camarasInternasNoValido"
                                >
-                            <div *ngIf="antenas_internas" class="invalid-feedback">
+                            <div *ngIf="camarasInternasNoValido" class="invalid-feedback">
                                 El valor minimo es 0.
                             </div>
                     </div>
                     <div class="md-form ml-5">
-                        <label for="externas">Antenas externas</label>
+                        <label for="externas">Camaras externas</label>
                         <input type="number" class="form-control" id="externas" name="externas"
-                               formControlName="antenas_externas"
-                               [class.is-invalid]="antenas_externas"
+                               formControlName="camaras_externas"
+                               [(ngModel)]="camaras_externas"
+                               [class.is-invalid]="camarasExternasNoValido"
                                >
-                        <div *ngIf="antenas_internas" class="invalid-feedback">
+                        <div *ngIf="camarasExternasNoValido" class="invalid-feedback">
                             El valor minimo es 0.
                         </div>
                     </div>
@@ -52,6 +54,10 @@
                 </div> 
             </div>
         </form>
-        <button (click)="survey_vertical()" class="btn btn-primary">Continuar</button>
+        <div class="row mt-5">
+            <div class="col-2 offset-sm-9">
+                <button (click)="survey_vertical()" class="btn btn-primary btn-block">Continuar</button>
+            </div>
+        </div>
     </div>
 </div>

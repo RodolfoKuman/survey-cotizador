@@ -24,7 +24,7 @@
 .btn-primary{
     background-color: #103878 !important;
     border-color: #103878;
-    color: white;
+    color: white !important;
 }
 
 .btn-primary:hover{

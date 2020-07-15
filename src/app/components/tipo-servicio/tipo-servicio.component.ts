@@ -13,8 +13,8 @@ export class TipoServicioComponent implements OnInit {
   gpon: boolean = false;
   wifi: boolean = false;
   cctv: boolean = false;
-  antenas_internas: Number = 0;
-  antenas_externas: Number = 0;
+  camaras_internas: Number = 0;
+  camaras_externas: Number = 0;
 
   constructor(private router: Router,
               private fb: FormBuilder) {
@@ -29,16 +29,16 @@ export class TipoServicioComponent implements OnInit {
       gpon: [false],
       wifi: [false],
       cctv: [false],
-      antenas_internas: [0, Validators.min(0)],
-      antenas_externas: [0, Validators.min(0)]
+      camaras_internas: [0, Validators.min(0)],
+      camaras_externas: [0, Validators.min(0)]
     });
   }
 
   survey_vertical(){
-    this.router.navigate(['vertical']);
-    // if(this.checkForm()){
-    //   this.router.navigate(['vertical']);
-    // }
+    if(this.checkForm()){
+      console.log(this.formServicio.value);
+      this.router.navigate(['vertical']);
+    }
   }
 
   checkForm() {
@@ -57,12 +57,22 @@ export class TipoServicioComponent implements OnInit {
     }
   }
 
-  get antenasInternasNoValido() {
-    return this.formServicio.get('antenas_internas').invalid && this.formServicio.get('antenas_internas').touched
+  validationCCTV(){
+    if(this.formServicio.value.cctv == true){
+      this.cctv = true;
+    }else{
+      this.cctv = false;
+      this.camaras_internas = 0;
+      this.camaras_externas = 0;
+    }
   }
 
-  get antenasExternasNoValido() {
-    return this.formServicio.get('antenas_externas').invalid && this.formServicio.get('antenas_externas').touched
+  get camarasInternasNoValido() {
+    return this.formServicio.get('camaras_internas').invalid && this.formServicio.get('camaras_internas').touched
+  }
+
+  get camarasExternasNoValido() {
+    return this.formServicio.get('camaras_externas').invalid && this.formServicio.get('camaras_externas').touched
   }
   
 
