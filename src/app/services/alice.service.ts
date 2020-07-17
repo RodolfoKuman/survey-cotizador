@@ -25,4 +25,26 @@ export class AliceService {
     return this.buildQuery('get', 'verticales');
   }
 
+  public getSurvey(token_uuid: string): Observable<any> {
+    return this.buildQuery('get', `survey/${token_uuid}`);
+  }
+
+  public createSurvey(params: { token_uuid: string}): Observable<any> {
+    return this.buildQuery('post', 'survey', params);
+  }
+
+  public getOrCreateSurvey(token : string){
+    
+    this.getSurvey(token).subscribe(res => { 
+      
+        if(res.data){
+          console.log(res.data);
+          return res;
+        }else{
+          return this.createSurvey({token_uuid: token});
+        }
+     });
+   
+  }
+
 }

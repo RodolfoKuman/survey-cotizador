@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import * as uuid from 'uuid';
 import { AliceService } from 'src/app/services/alice.service';
 import { LocalService } from 'src/app/services/local.service';
 
@@ -18,25 +17,39 @@ export class CompanyComponent implements OnInit {
   email: string = '';
   phone: string = '';
 
+  token: string = '';
+  survey :any = {};
+
   constructor(private router: Router,
               private fb: FormBuilder,
               private alice: AliceService,
               private localService: LocalService) {
-    this.crearFormulario();
-    // let token = uuid.v4();
-    // this.localService.saveTokenLocalStorage(token);   
-    // console.log(token);
 
+    this.crearFormulario();
+    this.token =  this.localService.getToken();
+
+    this.survey = this.alice.getOrCreateSurvey(this.token);
+    console.log(this.survey);
+    // this.alice.createSurvey({token_uuid: this.token})
+    //     .subscribe(res => {
+    //       console.log(res);
+    // })
   }
 
   ngOnInit() {
     this.getVerticales();
   }
 
+
+
   getVerticales(){
     this.alice.getVerticales().subscribe(res => {
       console.log(res);
     })
+  }
+
+  createSurvey(){
+
   }
 
   crearFormulario() {
@@ -64,7 +77,6 @@ export class CompanyComponent implements OnInit {
         }
         
       }
-    
   }
 
   checkForm() {

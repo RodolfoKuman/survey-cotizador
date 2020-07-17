@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'vertical', component: VerticalComponent },
   { path: 'enlace', component: EnlaceComponent },
   { path: 'renta', component: RentaComponent},
-  { path: '**', pathMatch: 'full', redirectTo: 'company' },
+  { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
 @NgModule({
