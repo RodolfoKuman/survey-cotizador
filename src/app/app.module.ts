@@ -14,6 +14,7 @@ import { VerticalComponent } from './components/vertical/vertical.component';
 import { EnlaceComponent } from './components/enlace/enlace.component';
 import { RentaComponent } from './components/renta/renta.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { QuestionsComponent } from './components/questions/questions.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     EnlaceComponent,
     RentaComponent,
     FooterComponent,
+    QuestionsComponent,
   ],
   imports: [
     BrowserModule,

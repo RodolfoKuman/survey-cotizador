@@ -14,39 +14,32 @@
                             formControlName="enlace"
                             (change)="validationEnlace()">
                         <option [value]="1">Si</option>
-                        <option [value]="2">No</option>
+                        <option [value]="0">No</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4" *ngIf="enlace == 1">
                     <label for="tipo_enlace">Tipo de enlace </label>
-                    <select class="form-control" id="tipo_enlace"
+                    <select (change)="changeEnlaceAnchoBanda()" class="form-control" id="tipo_enlace"
                             formControlName="tipo_enlace">
-                        <option [value]="2">Best effor</option>
-                        <option [value]="3">Dedicado</option>
+                        <option *ngFor="let enlace of enlace_select"
+                                [value]="enlace.id"> {{ enlace.name }} 
+                        </option>
                     </select>
                 </div>
                 <div class="form-group col-md-4" *ngIf="enlace == 1">
                     <label for="ancho_banda">Ancho de banda </label>
-                    <select class="form-control" id="ancho_banda"
+                    <select (change)="changeEnlaceAnchoBanda()" class="form-control" id="ancho_banda"
                             formControlName="ancho_banda">
-                        <option [value]="2">10 Mbps</option>
-                        <option [value]="3">20 Mbps</option>
-                        <option [value]="4">30 Mbps</option>
-                        <option [value]="5">50 Mbps</option>
-                        <option [value]="6">100 Mbps</option>
-                        <option [value]="7">200 Mbps</option>
-                        <option [value]="8">300 Mbps</option>
-                        <option [value]="9">500 Mbps</option>
-                        <option [value]="10">1 Gbps</option>
-                        <option [value]="11">2 Gbps</option>
-                        <option [value]="12">3 Gbps</option>
+                            <option *ngFor="let banda of ancho_banda_select"
+                            [value]="banda.id"> {{ banda.name }} 
+                    </option>
                     </select>
                 </div>
             </div>
         </form>
         <div class="row mt-5">
-            <div class="col-2 offset-sm-9">
-                <button (click)="survey_renta()" class="btn btn-primary btn-block">Continuar</button>
+            <div class="col-12 col-sm-3 offset-sm-9">
+                <button (click)="surveyStoreEnlace()" class="btn btn-primary btn-block">Continuar</button>
             </div>
         </div>
     </div>

@@ -11,13 +11,14 @@ export class LocalService {
   public createTokenUUID(){
     let token = uuid.v4();
     this.saveTokenLocalStorage(token);   
+    return token;
   }
 
-  public getToken() {
-    let token = this.getItemLocalStorage('token');
+  public async getToken() {
+    let token = await this.getItemLocalStorage('token');
     //Si el token no existe lo crea
     if(!token){
-      this.createTokenUUID(); 
+      return await this.createTokenUUID(); 
     } 
 
     return token;

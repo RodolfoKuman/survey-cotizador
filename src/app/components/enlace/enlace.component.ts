@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Enlace } from 'src/app/interfaces/enlace.interface';
+import { AliceService } from 'src/app/services/alice.service';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-enlace',
@@ -13,27 +16,73 @@ export class EnlaceComponent implements OnInit {
   enlace: Number = 1;
   tipo_enlace: any = 2;
   ancho_banda: any = 2;
+  enlace_select: any[] = [];
+  ancho_banda_select: any[] = [];
+
+  token: string = '';
+  survey: any = {};
+  enlaceData: Enlace = {};
 
   constructor(private router: Router,
-              private fb: FormBuilder) {
-        this.crearFormulario();    
-    }
+              private fb: FormBuilder,
+              private alice: AliceService,
+              private localService: LocalService) {
 
-  ngOnInit(): void {
+      this.localService.getToken().then(res => {
+        this.token = res;
+        this.alice.getOrCreateSurvey(this.token); 
+        this.getEnlaceSurvey(this.token);
+      });
+      
+      this.crearFormulario();    
   }
 
-  survey_renta(){
-    console.log(this.formEnlace.value);
-    console.log(`tipo_enlace: ${this.tipo_enlace}`);
-    console.log(`ancho de banda: ${this.ancho_banda}`);
-    if(this.checkForm()){  
-      this.router.navigate(['renta']);
-    }
-    
+  ngOnInit(): void {
+    this.alice.getTipoEnlace()
+      .subscribe(res => { 
+        res['data'].shift();
+        this.enlace_select = res.data;
+       });
+
+    this.alice.getAnchoBanda()
+      .subscribe(res => { 
+        res['data'].shift();
+        this.ancho_banda_select = res.data; 
+      });
+  }
+
+  getEnlaceSurvey(token : string){
+    this.alice.getSurveyEnlace(token).subscribe(res => {
+
+        if(res.data != null){    
+
+           (res.data.requerido == 1) ? this.enlace = 1 : this.enlace = 0;
+          
+           this.formEnlace.controls['enlace'].setValue(this.enlace);
+           this.formEnlace.controls['tipo_enlace'].setValue(res.data.tipo_enlace_id);
+           this.formEnlace.controls['ancho_banda'].setValue(res.data.ancho_banda_id);
+        }     
+    })
+  }
+
+  surveyStoreEnlace(){
+        
+    if(this.checkForm()){   
+      this.enlaceData.requerido = this.formEnlace.value.enlace;
+      this.enlaceData.tipo_enlace_id = this.tipo_enlace;
+      this.enlaceData.ancho_banda_id = this.ancho_banda;
+      this.enlaceData.token_uuid = this.token;
+      //guardar formulario en BD
+      this.alice.storeSurveyEnlace(this.enlaceData).subscribe(res => {
+        if(res.code == 200){
+          this.router.navigate(['renta']);
+        }
+      });    
+    }     
+      
   }
 
   crearFormulario() {
-
     this.formEnlace = this.fb.group({
       enlace: ['1',  Validators.required  ],
       tipo_enlace: ['2', ],
@@ -42,9 +91,7 @@ export class EnlaceComponent implements OnInit {
   }
 
   checkForm() {
-
     if ( this.formEnlace.invalid ) {
-
       return Object.values( this.formEnlace.controls ).forEach( control => {
         if ( control instanceof FormGroup ) {
           Object.values( control.controls ).forEach( control => control.markAsTouched() );
@@ -64,11 +111,21 @@ export class EnlaceComponent implements OnInit {
   validationEnlace(){
     if(this.formEnlace.value.enlace == 1){
       this.enlace = 1;
+      this.formEnlace.controls['tipo_enlace'].setValue(2);
+      this.formEnlace.controls['ancho_banda'].setValue(2);
+
+      this.tipo_enlace = this.formEnlace.value.tipo_enlace;
+      this.ancho_banda = this.formEnlace.value.ancho_banda;
     }else{
-      this.enlace = 2;
+      this.enlace = 0;
       this.tipo_enlace = 1;
       this.ancho_banda = 1;
     }
+  }
+
+  changeEnlaceAnchoBanda(){
+    this.tipo_enlace = this.formEnlace.value.tipo_enlace;
+    this.ancho_banda = this.formEnlace.value.ancho_banda;
   }
 
 }

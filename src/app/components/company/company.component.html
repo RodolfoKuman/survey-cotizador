@@ -10,20 +10,18 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="">Nombre de la empresa</label>
-                    <input (blur)="survey_section_2()"
-                            formControlName="company" 
+                    <input  formControlName="company" 
                             [class.is-invalid]="companyNoValido"
-                            type="text" class="form-control" id="company">
+                            type="text" class="form-control" id="company" autocomplete="off">
                     <div *ngIf="companyNoValido" class="invalid-feedback">
                         Este campo es requerido.
                     </div>
                   </div>
                   <div class="form-group col-md-6">
                     <label for="">Nombre del contacto</label>
-                    <input (blur)="survey_section_2()" 
-                            formControlName="contacto" 
+                    <input  formControlName="contacto" 
                             [class.is-invalid]="contactoNoValido"
-                            type="text" class="form-control" id="contacto">
+                            type="text" class="form-control" id="contacto" autocomplete="off">
                     <div *ngIf="contactoNoValido" class="invalid-feedback">
                         Este campo es requerido.
                     </div>
@@ -32,23 +30,26 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="">Correo electronico</label>
-                    <input (blur)="survey_section_2()" 
-                            formControlName="email" 
+                    <input  formControlName="email" 
                             [class.is-invalid]="emailNoValido"
-                            type="email" class="form-control" id="email" name="email">
+                            type="email" class="form-control" id="email" name="email" autocomplete="off">
                     <div *ngIf="emailNoValido" class="invalid-feedback">
                         Ingrese un correo valido.
                     </div>
                   </div>
                 <div class="form-group col-md-6">
                     <label for="">Telefono</label>
-                    <input (blur)="survey_section_2()" 
-                            formControlName="phone" 
+                    <input  formControlName="phone" 
                             [class.is-invalid]="phoneNoValido"
-                            type="text" class="form-control" id="phone" name="phone">
+                            type="text" class="form-control" id="phone" name="phone" autocomplete="off">
                     <div *ngIf="phoneNoValido" class="invalid-feedback">
                         Este campo es requerido.
                     </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12 col-sm-3 offset-sm-9">
+                    <button (click)="surveyStoreCompany()" class="btn btn-primary btn-block">Continuar</button>
                 </div>
             </div>
         </form>

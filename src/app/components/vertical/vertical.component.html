@@ -9,9 +9,10 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="exampleFormControlSelect2">Vertical</label>
+                <label for="vertical">Vertical</label>
                 <select class="form-control" id="vertical"
                         formControlName="vertical"
+                        [(ngModel)]="vertical"
                         [class.is-invalid]="verticalNoValido">
                     <option [value]="">Seleccionar...</option>
                     <option [value]="1">Hoteleria</option>
@@ -26,9 +27,10 @@
                 </div>
             </div>
             <div class="form-group col-md-6">
-                <label for="exampleFormControlSelect2">Tipo de servicio </label>
+                <label for="servicio">Tipo de servicio </label>
                 <select class="form-control" id="servicio"
                         formControlName="servicio"
+                        [(ngModel)]="servicio"
                         [class.is-invalid]="servicioNoValido">
                     <option [value]="">Seleccionar...</option>
                     <option [value]="1">Servicio administrado</option>
@@ -41,8 +43,8 @@
         </div>
        </form>
         <div class="row mt-5">
-            <div class="col-2 offset-sm-9">
-                <button (click)="survey_enlace()" class="btn btn-primary btn-block">Continuar</button>
+            <div class="col-12 col-sm-3 offset-sm-9">
+                <button (click)="surveyStoreServicio()" class="btn btn-primary btn-block">Continuar</button>
             </div>
         </div>
     </div>

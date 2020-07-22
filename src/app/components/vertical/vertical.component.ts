@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Servicio } from 'src/app/interfaces/servicio.interface';
+import { AliceService } from 'src/app/services/alice.service';
+import { LocalService } from 'src/app/services/local.service';
 
 @Component({
   selector: 'app-vertical',
@@ -13,9 +16,22 @@ export class VerticalComponent implements OnInit {
   vertical: number = 1;
   servicio: number = 1;
 
+  token: string = '';
+  survey: any = {};
+  servicioData: Servicio = {};
+
   constructor(private router: Router,
-              private fb: FormBuilder) {
-       this.crearFormulario();         
+              private fb: FormBuilder,
+              private alice: AliceService,
+              private localService: LocalService) {
+
+    this.localService.getToken().then(res =>{
+      this.token = res;
+      this.alice.getOrCreateSurvey(this.token); 
+      this.getServicioSurvey(this.token);
+    });
+
+    this.crearFormulario();         
   }
 
   ngOnInit(): void {
@@ -29,12 +45,32 @@ export class VerticalComponent implements OnInit {
     }); 
   }
 
-  survey_enlace(){
-    console.log(this.formVertical.value);
-    if(this.checkForm()){  
-      this.router.navigate(['enlace']);
-    }
-    
+  getServicioSurvey(token : string){
+    this.alice.getSurveyServicio(token).subscribe(res => {
+
+        if(res.data.tipo_servicio_id != null && res.data.vertical_id != null){    
+          this.servicio = res.data.tipo_servicio_id;
+          this.vertical = res.data.vertical_id;     
+          this.formVertical.controls['vertical'].setValue(this.vertical);
+          this.formVertical.controls['servicio'].setValue(this.servicio);
+        }     
+    })
+  }
+
+  surveyStoreServicio(){
+        
+    if(this.checkForm()){
+      this.servicioData.vertical_id = this.formVertical.value.vertical;
+      this.servicioData.tipo_servicio_id = this.formVertical.value.servicio;
+      this.servicioData.token_uuid = this.token;
+      //guardar formulario en BD
+      this.alice.storeSurveyVertical(this.servicioData).subscribe(res => {
+        if(res.code == 200){
+          this.router.navigate(['enlace']);
+        }
+      });    
+    }     
+      
   }
 
   checkForm() {

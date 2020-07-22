@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AliceService } from 'src/app/services/alice.service';
 import { LocalService } from 'src/app/services/local.service';
+import { Company } from 'src/app/interfaces/company.interface';
 
 @Component({
   selector: 'app-company',
@@ -19,64 +20,73 @@ export class CompanyComponent implements OnInit {
 
   token: string = '';
   survey :any = {};
+  companyData: Company = {};
 
   constructor(private router: Router,
               private fb: FormBuilder,
               private alice: AliceService,
               private localService: LocalService) {
 
-    this.crearFormulario();
-    this.token =  this.localService.getToken();
+    
+    //Recuperando token y  encuesta, si no existe lo crea
+    this.localService.getToken().then(res =>{
+      this.token = res;
+      this.alice.getOrCreateSurvey(this.token); 
+      this.getSurvey(this.token); 
+      this.getCompanySurvey(this.token);
+    });
 
-    this.survey = this.alice.getOrCreateSurvey(this.token);
-    console.log(this.survey);
-    // this.alice.createSurvey({token_uuid: this.token})
-    //     .subscribe(res => {
-    //       console.log(res);
-    // })
+    this.crearFormulario();
+  
   }
 
   ngOnInit() {
-    this.getVerticales();
+    
   }
 
-
-
-  getVerticales(){
-    this.alice.getVerticales().subscribe(res => {
-      console.log(res);
+  getSurvey(token : string){
+    this.alice.getSurvey(token).subscribe(res => {
+      this.survey = res.data;
     })
   }
 
-  createSurvey(){
-
+  getCompanySurvey(token : string){
+    this.alice.getSurveyCompany(token).subscribe(res => {
+  
+        if(res.data != null){
+          this.formCompany.controls['company'].setValue(res.data.empresa);
+          this.formCompany.controls['contacto'].setValue(res.data.contacto);
+          this.formCompany.controls['phone'].setValue(res.data.telefono);
+          this.formCompany.controls['email'].setValue(res.data.email);
+        }     
+    })
   }
 
   crearFormulario() {
-
     this.formCompany = this.fb.group({
-      company: ['',  Validators.required  ],
-      contacto: ['',  Validators.required  ],
-      email: ['',  [Validators.required, Validators.email]  ],
-      phone: ['',  Validators.required  ],
+      company: [this.company,  Validators.required  ],
+      contacto: [this.contacto,  Validators.required  ],
+      email: [this.email,  [Validators.required, Validators.email]  ],
+      phone: [this.phone,  Validators.required  ],
     }); 
   }
 
-  survey_section_2(){
-    this.company = this.formCompany.value.company;
-    this.contacto = this.formCompany.value.contacto;
-    this.email = this.formCompany.value.email;
-    this.phone = this.formCompany.value.phone;
-
-    if(this.company != '' && this.contacto != ''
-      && this.email != '' && this.phone != ''){
+  surveyStoreCompany(){
         
-        if(this.checkForm()){
-          console.log(this.formCompany.value);
+    if(this.checkForm()){
+      this.companyData.empresa = this.formCompany.value.company;
+      this.companyData.contacto = this.formCompany.value.contacto;
+      this.companyData.email = this.formCompany.value.email;
+      this.companyData.telefono = this.formCompany.value.phone;
+      this.companyData.token_uuid = this.token;
+      //guardar formulario en BD
+      this.alice.storeSurveyCompany(this.companyData).subscribe(res => {
+        if(res.code == 200){
           this.router.navigate(['servicio']);
         }
-        
-      }
+      });    
+    }     
+      
   }
 
   checkForm() {

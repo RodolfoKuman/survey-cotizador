@@ -6,6 +6,7 @@ import { TipoServicioComponent } from './components/tipo-servicio/tipo-servicio.
 import { VerticalComponent } from './components/vertical/vertical.component';
 import { EnlaceComponent } from './components/enlace/enlace.component';
 import { RentaComponent } from './components/renta/renta.component';
+import { QuestionsComponent } from './components/questions/questions.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'vertical', component: VerticalComponent },
   { path: 'enlace', component: EnlaceComponent },
   { path: 'renta', component: RentaComponent},
+  { path: 'questions/:id', component: QuestionsComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 
