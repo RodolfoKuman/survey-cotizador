@@ -38,6 +38,7 @@ export class TipoServicioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   getServicioSurvey(token : string){
@@ -115,7 +116,7 @@ export class TipoServicioComponent implements OnInit {
       this.formServicio.controls['camaras_externas'].setValue(0);
     }
   }
-
+  
   get camarasInternasNoValido() {
     return this.formServicio.get('camaras_internas').invalid && this.formServicio.get('camaras_internas').touched
   }

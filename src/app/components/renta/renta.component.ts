@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Renta } from 'src/app/interfaces/renta.interface';
+import { Pregunta } from 'src/app/interfaces/question.interface';
 import { LocalService } from 'src/app/services/local.service';
 import { AliceService } from 'src/app/services/alice.service';
 import { Router } from '@angular/router';
@@ -17,9 +18,9 @@ export class RentaComponent implements OnInit {
   token: string = '';
   plazo_select: any[] = [];
   survey: any = {};
-
   rentaData: Renta = {};
-  
+  vertical_id : number;
+  preguntas : Pregunta[];
 
   constructor(private router: Router,
               private fb: FormBuilder,
@@ -30,6 +31,7 @@ export class RentaComponent implements OnInit {
       this.token = res;
       this.alice.getOrCreateSurvey(this.token); 
       this.getRentaSurvey(this.token);
+      this.getVertical(this.token);
     });
 
      this.crearFormulario();           
@@ -41,6 +43,17 @@ export class RentaComponent implements OnInit {
       .subscribe(res => { 
         this.plazo_select = res.data;
        });
+  }
+
+  getVertical(token: string){
+    this.alice.getVerticalSurvey(token).subscribe(res => {
+      this.vertical_id = res['data'].vertical_id;
+      this.alice.getQuestionsByVertical(this.vertical_id).subscribe(res => {
+        //Guradando preguntas en el localstorage
+        this.preguntas = res['data'];
+        this.localService.saveQuestionsLocalStorage(this.preguntas);      
+      })
+    })
   }
 
   crearFormulario() {
@@ -61,8 +74,7 @@ export class RentaComponent implements OnInit {
       //guardar formulario en BD
       this.alice.storeSurveyRenta(this.rentaData).subscribe(res => {
         if(res.code == 200){
-          console.log('Guardado!!')
-          this.router.navigate(['questions', 1]);
+          this.router.navigate(['questions', 0]);
         }
       });    
     }     
@@ -104,5 +116,9 @@ export class RentaComponent implements OnInit {
   get plazoNoValido() {
     return this.formRenta.get('plazo').invalid && this.formRenta.get('plazo').touched
   }
+
+  /**OBTENER Y GUARDAR PREGUNTAS EN LOCAL STORAGE*/ 
+
+  
 
 }

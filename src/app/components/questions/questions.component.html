@@ -1,1 +1,34 @@
-<p>questions works!</p>
+<div class="">
+    <div class="survey-container">
+        <form [formGroup]="formQuestion">
+            <div class="row mb-4 animate__animated animate__fadeInDown">
+                <div class="col-12 text-center">
+                    <h2 class="bg-orange">{{question.rubro}}</h2>
+                    <i [class]="question.icon"></i>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="question.tipo_pregunta_id == 1" class="form-group col-12 col-sm-6 offset-sm-3">
+                    <input  formControlName="resultado" 
+                            [(ngModel)]="resultado"
+                            placeholder="Ingrese un valor numerico"
+                            type="text" class="form-control" id="resultado" autocomplete="off">
+                  </div>
+            </div>
+            <select *ngIf="question.tipo_pregunta_id == 2" class="form-control col-12 col-sm-8 offset-sm-2" id="resultado2"
+                        formControlName="resultado2">
+                    <option [value]="0">[Selecciona una opcion]</option>
+                    <option [value]="1">Si</option>
+                    <option [value]="2">No</option>
+                      
+            </select>
+
+        </form>
+        <div class="row mt-5">
+            <div class="col-12 col-sm-3 offset-sm-6">
+                <button (click)="nextQuestion()" class="btn btn-primary btn-block">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

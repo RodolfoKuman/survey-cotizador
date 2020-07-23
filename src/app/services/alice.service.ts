@@ -28,6 +28,14 @@ export class AliceService {
     return this.buildQuery('get', 'verticales');
   }
 
+  public getVerticalSurvey(token_uuid: string): Observable<any> {
+    return this.buildQuery('get', `getVerticalSurvey/${token_uuid}`);
+  }
+
+  public getQuestionsByVertical(vertical: number): Observable<any>{
+    return this.buildQuery('get', `getQuestionsByVertical/${vertical}`);
+  }
+
   public getSurvey(token_uuid: string): Observable<any> {
     return this.buildQuery('get', `survey/${token_uuid}`);
   }

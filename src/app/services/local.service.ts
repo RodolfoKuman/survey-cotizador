@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as uuid from 'uuid';
+import { Pregunta } from '../interfaces/question.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,10 +28,18 @@ export class LocalService {
   public saveTokenLocalStorage(token: any){
     localStorage.setItem('token', token);
   }
-  
+
   public getItemLocalStorage(item : string){
     return localStorage.getItem(item);
   }
 
+  public saveQuestionsLocalStorage(questions: Pregunta[]){
+    localStorage.setItem('questions', JSON.stringify(questions));
+  }
+
+  public getQuestionsLocalStorage<Pregunta>(){
+    return localStorage.getItem('questions');
+  }
+  
 }
 

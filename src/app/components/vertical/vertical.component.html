@@ -14,13 +14,9 @@
                         formControlName="vertical"
                         [(ngModel)]="vertical"
                         [class.is-invalid]="verticalNoValido">
-                    <option [value]="">Seleccionar...</option>
-                    <option [value]="1">Hoteleria</option>
-                    <option [value]="2">Educacion</option>
-                    <option [value]="3">Salud</option>
-                    <option [value]="4">Retail</option>
-                    <option [value]="5">Transportes</option>
-                    <option [value]="6">Terminales</option>
+                        <option [value]="vertical.id" 
+                                *ngFor="let vertical of verticals_select">{{vertical.name}}
+                        </option>
                 </select>
                 <div *ngIf="verticalNoValido" class="invalid-feedback">
                     Este campo es requerido.

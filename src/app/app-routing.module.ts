@@ -7,6 +7,7 @@ import { VerticalComponent } from './components/vertical/vertical.component';
 import { EnlaceComponent } from './components/enlace/enlace.component';
 import { RentaComponent } from './components/renta/renta.component';
 import { QuestionsComponent } from './components/questions/questions.component';
+import { FinishComponent } from './components/finish/finish.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'enlace', component: EnlaceComponent },
   { path: 'renta', component: RentaComponent},
   { path: 'questions/:id', component: QuestionsComponent},
+  { path: 'finish', component: FinishComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 

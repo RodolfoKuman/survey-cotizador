@@ -18,6 +18,7 @@ export class VerticalComponent implements OnInit {
 
   token: string = '';
   survey: any = {};
+  verticals_select: any = [];
   servicioData: Servicio = {};
 
   constructor(private router: Router,
@@ -35,6 +36,13 @@ export class VerticalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.alice.getVerticales().subscribe(res => {
+      this.verticals_select = res['data'];
+      this.verticals_select.unshift({
+        name: '[Seleccione una vertical]',
+        id: ''
+      })
+    })
   }
 
   crearFormulario() {

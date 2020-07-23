@@ -15,6 +15,7 @@ import { EnlaceComponent } from './components/enlace/enlace.component';
 import { RentaComponent } from './components/renta/renta.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { QuestionsComponent } from './components/questions/questions.component';
+import { FinishComponent } from './components/finish/finish.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
     RentaComponent,
     FooterComponent,
     QuestionsComponent,
+    FinishComponent,
   ],
   imports: [
     BrowserModule,
