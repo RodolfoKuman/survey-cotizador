@@ -61,6 +61,9 @@ export class VerticalComponent implements OnInit {
           this.vertical = res.data.vertical_id;     
           this.formVertical.controls['vertical'].setValue(this.vertical);
           this.formVertical.controls['servicio'].setValue(this.servicio);
+        }else{
+          this.formVertical.controls['vertical'].setValue('');
+          this.formVertical.controls['servicio'].setValue('');
         }     
     })
   }

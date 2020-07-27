@@ -5,7 +5,6 @@ import { LocalService } from 'src/app/services/local.service';
 import { AliceService } from 'src/app/services/alice.service';
 import { Pregunta } from 'src/app/interfaces/question.interface';
 import { Respuesta } from 'src/app/interfaces/respuesta.interface';
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'constants';
 
 @Component({
   selector: 'app-questions',
@@ -42,7 +41,6 @@ export class QuestionsComponent implements OnInit {
       this.token = res;
     });
             
-
     this.getQuestions();
     this.activedRoute.params.subscribe(params => {
       this.preguntas.forEach((element, index )=> {
@@ -101,8 +99,6 @@ export class QuestionsComponent implements OnInit {
     this.respuesta.antenas_externas = this.antenas_externas;
     this.respuesta.antenas_internas = this.antenas_internas;
 
-    
-
     if(num_preguntas == this.index + 1){
       /* Guarda la ultima pregunta y termina la encuesta */ 
       this.alice.storeResult(this.respuesta).subscribe(res => {
@@ -127,8 +123,6 @@ export class QuestionsComponent implements OnInit {
         }
       })  
     }
-
-    
     
   }
 

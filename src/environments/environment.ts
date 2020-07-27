@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  URI_BASE: 'http://localhost:8000/api/survey/'
+  production: true,
+  URI_BASE: 'https://alice.sitwifi.com/api/survey/'
 };
 
 /*

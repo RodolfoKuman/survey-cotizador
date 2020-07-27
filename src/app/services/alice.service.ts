@@ -47,10 +47,8 @@ export class AliceService {
 
   public getOrCreateSurvey(token: string){ 
      this.getSurvey(token).subscribe(res => { 
-        if(res.data == null){
-            this.createSurvey({token_uuid: token}).subscribe(res => {
-              
-            })
+        if(res.data == null || res.data.length == 0){
+            this.createSurvey({token_uuid: token}).subscribe(res => {})
         }
      });  
   }
