@@ -5,6 +5,7 @@ export interface Pregunta{
     tipo_pregunta_id?: number,
     icon?: string,
     clave?: string,
+    option_key?: number,
     created_at?: string,
     updated_at?: string
 }

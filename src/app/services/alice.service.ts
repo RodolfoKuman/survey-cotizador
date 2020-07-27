@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Company } from '../interfaces/company.interface';
 import { Servicio } from '../interfaces/servicio.interface';
 import { Enlace } from '../interfaces/enlace.interface';
+import { Respuesta } from '../interfaces/respuesta.interface';
 
 const URL_API = environment.URI_BASE;
 
@@ -109,6 +110,10 @@ export class AliceService {
   public storeSurveyRenta(enlace: Enlace): Observable<any> {
     return this.buildQuery('post', 'renta', enlace);
   }
-  
+
+  //Guardar preguntas 
+  public storeResult(respuesta: Respuesta): Observable<any> {
+    return this.buildQuery('post', 'saveSurveyResult', respuesta);
+  }
 
 }

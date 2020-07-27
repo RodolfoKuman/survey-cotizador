@@ -12,15 +12,12 @@
                     <input  formControlName="resultado" 
                             [(ngModel)]="resultado"
                             placeholder="Ingrese un valor numerico"
-                            type="text" class="form-control" id="resultado" autocomplete="off">
+                            type="number" class="form-control" id="resultado" autocomplete="off">
                   </div>
             </div>
-            <select *ngIf="question.tipo_pregunta_id == 2" class="form-control col-12 col-sm-8 offset-sm-2" id="resultado2"
+            <select [(ngModel)]="resultado2" *ngIf="question.tipo_pregunta_id == 2" class="form-control col-12 col-sm-8 offset-sm-2" id="resultado2"
                         formControlName="resultado2">
-                    <option [value]="0">[Selecciona una opcion]</option>
-                    <option [value]="1">Si</option>
-                    <option [value]="2">No</option>
-                      
+                    <option [value]="option.id" *ngFor="let option of select_options">{{ option.name }}</option>      
             </select>
 
         </form>
