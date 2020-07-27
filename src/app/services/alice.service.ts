@@ -45,6 +45,10 @@ export class AliceService {
     return this.buildQuery('post', 'survey', params);
   }
 
+  public setStatusSurvey(params: { token_uuid: string}): Observable<any> {
+    return this.buildQuery('post', 'setStatusSurvey', params);
+  }
+
   public getOrCreateSurvey(token: string){ 
      this.getSurvey(token).subscribe(res => { 
         if(res.data == null || res.data.length == 0){
