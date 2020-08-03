@@ -17,6 +17,8 @@ export class RentaComponent implements OnInit {
 
   token: string = '';
   plazo_select: any[] = [];
+  showPlazo: boolean = false;
+
   survey: any = {};
   rentaData: Renta = {};
   vertical_id : number;
@@ -32,6 +34,7 @@ export class RentaComponent implements OnInit {
       this.alice.getOrCreateSurvey(this.token); 
       this.getRentaSurvey(this.token);
       this.getVertical(this.token);
+      this.getServicio(this.token);
     });
 
      this.crearFormulario();           
@@ -42,6 +45,7 @@ export class RentaComponent implements OnInit {
     this.alice.getPlazo()
       .subscribe(res => { 
         this.plazo_select = res.data;
+        this.plazo_select.shift();
        });
   }
 
@@ -56,20 +60,34 @@ export class RentaComponent implements OnInit {
     })
   }
 
+  getServicio(token: string){
+    this.alice.getSurveyServicio(token).subscribe(res => {
+      //Servicio administrado
+      if(res.data.tipo_servicio_id == 1){
+        this.formRenta.value.plazo == 1;
+        this.showPlazo = true;
+      }else{
+        //Venta
+        this.showPlazo = false;
+        this.formRenta.value.plazo = 0;
+      }
+    })
+  }
+
   crearFormulario() {
     this.formRenta = this.fb.group({
       renta: [0.0,  [Validators.required, Validators.min(0)] ],
       capex: [0.0, Validators.min(0)],
-      plazo: [1, ],
+      plazo: [2, ],
     }); 
   }
 
   surveyStoreRenta(){
         
     if(this.checkForm()){   
+      (this.showPlazo == true) ? this.rentaData.plazo_id = this.formRenta.value.plazo : this.rentaData.plazo_id = 1;
       this.rentaData.renta_anticipada = this.formRenta.value.renta;
       this.rentaData.capex = this.formRenta.value.capex;
-      this.rentaData.plazo_id = this.formRenta.value.plazo;
       this.rentaData.token_uuid = this.token;
       //guardar formulario en BD
       this.alice.storeSurveyRenta(this.rentaData).subscribe(res => {

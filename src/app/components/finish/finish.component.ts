@@ -30,7 +30,7 @@ export class FinishComponent implements OnInit {
   setStatusSurvey(token: string){
     this.alice.setStatusSurvey({token_uuid: token}).subscribe(res => {   
       if(res.code == 200){
-         localStorage.clear();
+        localStorage.clear();
         setTimeout(function() {
           location.href = "http://www.sitwifi.com/";
         }, 7000);

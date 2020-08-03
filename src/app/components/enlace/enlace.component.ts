@@ -69,6 +69,12 @@ export class EnlaceComponent implements OnInit {
         
     if(this.checkForm()){   
       this.enlaceData.requerido = this.formEnlace.value.enlace;
+
+      if(this.formEnlace.value.enlace == 0){
+        this.tipo_enlace = 1;
+        this.ancho_banda = 1;
+      }
+
       this.enlaceData.tipo_enlace_id = this.tipo_enlace;
       this.enlaceData.ancho_banda_id = this.ancho_banda;
       this.enlaceData.token_uuid = this.token;

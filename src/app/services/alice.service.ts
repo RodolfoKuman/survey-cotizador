@@ -29,6 +29,10 @@ export class AliceService {
     return this.buildQuery('get', 'verticales');
   }
 
+  public sumAntenasHoteles(params: { token_uuid: string}): Observable<any> {
+    return this.buildQuery('post', 'sumAntenasHoteles', params);
+  }
+
   public getVerticalSurvey(token_uuid: string): Observable<any> {
     return this.buildQuery('get', `getVerticalSurvey/${token_uuid}`);
   }

@@ -49,7 +49,7 @@ export class VerticalComponent implements OnInit {
 
     this.formVertical = this.fb.group({
       vertical: ['',  Validators.required  ],
-      servicio: ['',  Validators.required  ],
+      servicio: [1,  Validators.required  ],
     }); 
   }
 
@@ -63,7 +63,7 @@ export class VerticalComponent implements OnInit {
           this.formVertical.controls['servicio'].setValue(this.servicio);
         }else{
           this.formVertical.controls['vertical'].setValue('');
-          this.formVertical.controls['servicio'].setValue('');
+          this.formVertical.controls['servicio'].setValue(1);
         }     
     })
   }

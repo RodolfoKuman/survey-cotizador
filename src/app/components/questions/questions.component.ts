@@ -83,14 +83,25 @@ export class QuestionsComponent implements OnInit {
     }
   }
 
+  sumAntenasHotel(token_uuid: string){
+    this.alice.sumAntenasHoteles({token_uuid : token_uuid}).subscribe(res => {
+      
+    })
+  }
+
   getQuestions(){
     this.preguntas =  JSON.parse(this.localService.getQuestionsLocalStorage());
   }
 
   nextQuestion(){
     let num_preguntas = this.preguntas.length;
-
+    //Asignando resultado de la pregunta dependiendo si es abierta o cerrada
     (this.question.tipo_pregunta_id == 1) ? this.resultado = this.formQuestion.value.resultado : this.resultado = this.formQuestion.value.resultado2;
+    //Asignando valor por defecto si la respuesta es nulo o vacia
+    console.log(this.resultado );
+    if(this.resultado == null || this.resultado == '' || this.resultado == undefined) {
+      this.resultado = 0;
+    }
 
     this.setAntenas();
     this.respuesta.pregunta_id = this.question.id;
@@ -104,6 +115,7 @@ export class QuestionsComponent implements OnInit {
       this.alice.storeResult(this.respuesta).subscribe(res => {
         if(res['code']  == 200){
           this.index++;
+          this.sumAntenasHotel(this.token);
           this.router.navigate(['finish']);
           this.resultado = '';
           this.resultado2 = '';

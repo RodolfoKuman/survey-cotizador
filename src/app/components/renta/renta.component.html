@@ -19,8 +19,8 @@
                     <label for="">Capex</label>
                     <input formControlName="capex" type="text" class="form-control" id="capex" [class.is-invalid]="capexNoValido">
                 </div>
-                <div class="form-group col-md-4 mb-3">
-                    <label for="plazo">Plazo </label>
+                <div *ngIf="showPlazo == true" class="form-group col-md-4 mb-3">
+                    <label for="plazo">Plazo del servicio</label>
                     <select class="form-control" id="plazo"
                             formControlName="plazo"
                             [class.is-invalid]="plazoNoValido">
