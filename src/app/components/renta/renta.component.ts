@@ -5,6 +5,7 @@ import { Pregunta } from 'src/app/interfaces/question.interface';
 import { LocalService } from 'src/app/services/local.service';
 import { AliceService } from 'src/app/services/alice.service';
 import { Router } from '@angular/router';
+import swal from'sweetalert2';
 
 @Component({
   selector: 'app-renta',
@@ -135,7 +136,24 @@ export class RentaComponent implements OnInit {
     return this.formRenta.get('plazo').invalid && this.formRenta.get('plazo').touched
   }
 
-  /**OBTENER Y GUARDAR PREGUNTAS EN LOCAL STORAGE*/ 
+  end_survey(){
+    swal.fire({
+      title: '¿Quieres salir de la encuesta?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#040440',
+      cancelButtonColor: '#e25f05',
+      confirmButtonText: 'Continuar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.alice.sendEmailComercial(this.token).subscribe(res => {
+          location.href = "http://www.sitwifi.com/";
+        }) 
+      }
+    })
+  }
 
   
 

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Servicio } from 'src/app/interfaces/servicio.interface';
 import { AliceService } from 'src/app/services/alice.service';
 import { LocalService } from 'src/app/services/local.service';
+import swal from'sweetalert2';
 
 @Component({
   selector: 'app-tipo-servicio',
@@ -123,6 +124,25 @@ export class TipoServicioComponent implements OnInit {
 
   get camarasExternasNoValido() {
     return this.formServicio.get('camaras_externas').invalid && this.formServicio.get('camaras_externas').touched
+  }
+
+  end_survey(){
+    swal.fire({
+      title: '¿Quieres salir de la encuesta?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#040440',
+      cancelButtonColor: '#e25f05',
+      confirmButtonText: 'Continuar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.alice.sendEmailComercial(this.token).subscribe(res => {
+          location.href = "http://www.sitwifi.com/";
+        }) 
+      }
+    })
   }
   
 

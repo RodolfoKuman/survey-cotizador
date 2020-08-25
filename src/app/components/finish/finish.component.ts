@@ -19,12 +19,18 @@ export class FinishComponent implements OnInit {
 
       this.localService.getToken().then(res => {
         this.token = res;
-        this.setStatusSurvey(this.token);
+        this.sendEmail(this.token);
       });
    }
 
   ngOnInit(): void {
     
+  }
+
+  sendEmail(token: string){
+    this.alice.sendEmailComercial(token).subscribe(res => {
+      this.setStatusSurvey(token);
+    })
   }
 
   setStatusSurvey(token: string){

@@ -1,18 +1,39 @@
-<div class="jumbotron jumbotron-fluid animated fadeIn fast">
+<div id="portada" class="jumbotron jumbotron-fluid p-0">
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-12 p-5">
                 <img src="./assets/img/logo_sitwifi.png" alt="">
+                <h2 class="mt-3">Encuentra el servicio que mejor se adapte a tus necesidades.</h2>
             </div>
         </div>
-        <p class="lead mt-3">Encuentra el servicio que mejor se adapte a tus necesidades</p>
-        <a class="btn btn-primary" routerLink="/company" >Empezar encuesta</a>
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <a class="btn btn-primary btn-lg active text-center p-3" routerLink="/company" >Empezar encuesta</a> 
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col d-flex justify-content-center">
-        <!-- <img class="img-fluid" style="max-height: 500px;" src="./assets/img/portada2.jpg" alt=""> -->
-    </div>
-</div>
 
+
+<style>
+    #portada{
+        /* height: 70vh; */
+        background-image: url('./assets/img/portada1.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .container{
+        padding: 0;
+        margin:0;
+        position: relative;
+        height: 70vh;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    h2{
+        text-shadow: 2px 2px 2px #A6ADA3;
+        font-size: 2.5em;
+    }
+</style>

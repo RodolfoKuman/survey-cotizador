@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AliceService } from 'src/app/services/alice.service';
 import { LocalService } from 'src/app/services/local.service';
 import { Company } from 'src/app/interfaces/company.interface';
+import swal from'sweetalert2';
 
 @Component({
   selector: 'app-company',
@@ -119,6 +120,25 @@ export class CompanyComponent implements OnInit {
 
   get phoneNoValido() {
     return this.formCompany.get('phone').invalid && this.formCompany.get('phone').touched
+  }
+
+  end_survey(){
+    swal.fire({
+      title: '¿Quieres salir de la encuesta?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#040440',
+      cancelButtonColor: '#e25f05',
+      confirmButtonText: 'Continuar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.alice.sendEmailComercial(this.token).subscribe(res => {
+          location.href = "http://www.sitwifi.com/";
+        }) 
+      }
+    })
   }
 
 }

@@ -53,6 +53,10 @@ export class AliceService {
     return this.buildQuery('post', 'setStatusSurvey', params);
   }
 
+  public sendEmailComercial(token_uuid: string): Observable<any> {
+    return this.buildQuery('get', `send_notification_survey/${token_uuid}`);
+  }
+
   public getOrCreateSurvey(token: string){ 
      this.getSurvey(token).subscribe(res => { 
         if(res.data == null || res.data.length == 0){
