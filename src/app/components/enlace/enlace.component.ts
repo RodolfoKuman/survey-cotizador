@@ -148,6 +148,7 @@ export class EnlaceComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.alice.sendEmailComercial(this.token).subscribe(res => {
+          localStorage.clear();
           location.href = "http://www.sitwifi.com/";
         }) 
       }
