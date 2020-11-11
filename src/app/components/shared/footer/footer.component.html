@@ -1,52 +1,144 @@
-<footer class="footer-wrapper">
+<!--Footer --->
+<section class="bg-light-blue section-4" id="footer">
     <div class="container">
-        <div class="row col-p30">
-            <div class="col-sm-12 col-md-4">
-                <div class="footer-widget">
-                    <h3 class="footer-title">SitWifi</h3>
-                    <ul class="footer-links clearfix">
-                        <li><a href="http://www.sitwifi.com">Inicio</a></li>
-                        <li><a href="http://www.sitwifi.com/contacto.html">Contacto</a></li>
-                        <li><a href="http://www.sitwifi.com/aviso.html">Aviso de privacidad</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-3">
-            <div class="footer-widget">
-                    <h3 class="footer-title">Redes sociales</h3>
-                    <ul class="footer-social clearfix">
-                        <li><a href="https://twitter.com/sitwifi" target="_blank" data-toggle="tooltip" title="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://www.facebook.com/Sitwifi" target="_blank" data-toggle="tooltip" title="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://www.instagram.com/sitwifi" target="_blank" data-toggle="tooltip" title="" data-original-title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="https://www.linkedin.com/company/sitwifi" target="_blank" data-toggle="tooltip" title="" data-original-title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-          <div class="col-sm-12 col-md-5">
-                <div class="footer-widget">
-                    <h3 class="footer-title">Contacto</h3>
-                <div class="row">
-                    <div class="col-sm-6 xs-box2">
-                        <ul class="unstyled-list list-medium mt0">
-                            <li><i class="fa fa-phone fs-small mr10"></i>Ciudad de México<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  +52 55 5093 7071</li>
-                            <li><i class="fa fa-globe fs-small mr10"></i>Internacional<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  +1 829 956 6590</li>
-                      </ul>
+        <div class="row justify-content-center">
+            <div class="col-lg-3">
+                <div class="text-center mb-10">
+                  <div class="footer-circle-1 border border-white mx-auto">
+                    <div class="h-100 d-flex justify-content-center align-items-center">
+                      <img id="IMG_industria"src="/assets/img/Iconos/Icon_Hoteleria.svg" class="img-fluid w-55">
                     </div>
-                    <div class="col-sm-6 xs-box2">
-                        <ul class="unstyled-list list-medium mt0">
-                            <li><i class="fa fa-envelope"></i><a href="mailto:contacto@sitwifi.com"> contacto@sitwifi.com</a></li>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="text-right mb-10 industrias-texts">
+                  <h4 class="text-secondary font-weight-bold">Industrias</h4>
+                     <ul class="list-unstyled f_list space_list">
+                         <li><a id="F_hoteleria" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_Hoteleria.svg')">Hotelería</a></li>
+                         <li><a id="F_educacion" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_Educacion.svg')">Educación</a></li>
+                         <li><a id="F_aeropuertos" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_AeropuertosyTerminales.svg')">Aeropuertos y Terminales</a></li>
+                         <li><a id="F_autoservicios" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_Autoservicios.svg')">Tiendas, Restaurantes y Autoservicios</a></li>
+                         <li><a id="F_centros" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_CentrosComerciales.svg')">Centros Comerciales</a></li>
+                         <li><a id="F_transporte" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_TransportePublico.svg')">Transporte Público</a></li>
+                         <li><a id="F_salud" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_SectorSalud.svg')">Sector Salud</a></li>
+                         <li><a id="F_financiero" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_SectorFinanciero.svg')">Sector Financiero</a></li>
+                         <li><a id="F_fabricas" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_Fabricas.svg')">Fábricas</a></li>
+                         <li><a id="F_estadios" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_Estadios.svg')">Estadios</a></li>
+                         <li><a id="F_eventos" href="#" (mouseover)="setIndustriaImageFooter('/assets/img/Iconos/Icon_Eventos.svg')">Eventos</a></li>
+                     </ul>
+                </div>
+            </div>
+            <div class="col-lg-5 ml-5 servicios-footer-1">
+              <h4 class="text-secondary font-weight-bold">Servicios</h4>
+              <div class="row">
+                <div class="col-lg-6">
+                  <label class="text-secondary font-weight-bold">SSA Servicio y Soporte Administrado</label>
+                     <ul class="list-unstyled f_list space_list">
+                         <li><a href="http://sitwifi.com/ssa">WiFi</a></li>
+                         <li><a href="http://sitwifi.com/ssa">WiFi Móvil</a></li>
+                         <li><a href="http://sitwifi.com/ssa">CCTV</a></li>
+                         <li><a href="http://sitwifi.com/ssa">GPON</a></li>
+                     </ul>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="text-left mb-10">
+                         <label class="text-secondary font-weight-bold">VMW Venue Monetization WiFi</label>
+                            <ul class="list-unstyled f_list space_list">
+                                <li><a href="http://sitwifi.com/vmw')}}">Sitwifi Station</a></li>
+                                <li><a href="http://sitwifi.com/vmw')}}">Sitwifi Premium</a></li>
+                                <li><a href="http://sitwifi.com/vmw')}}">Sitwifi Professional</a></li>
+                            </ul>
+                    </div>
+                    </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6">
+                     <label class="text-secondary font-weight-bold">Telecom Management</label>
+                        <ul class="list-unstyled f_list space_list">
+                            <li><a href="http://sitwifi.com/telecom">Enlaces</a></li>
+                            <li><a href="http://sitwifi.com/telecom">Ciberseguridad / Firewalls</a></li>
+                            <li><a href="http://sitwifi.com/telecom">SD-WAN</a></li>
                         </ul>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="text-left mb-10">
+                            <label class="text-secondary font-weight-bold">Carriers</label>
+                               <ul class="list-unstyled f_list space_list">
+                                   <li><a href="http://sitwifi.com/carriers">Carrier SSID´s</a></li>
+                                   <li><a href="http://sitwifi.com/carriers">Roaming & Data offload</a></li>
+                               </ul>
                     </div>
-                </div>
-                </div>
+                    </div>
+              </div>
+
+            </div>
+            <div class="servicios-footer-2 d-none">
+              <h4 class="text-secondary font-weight-bold text-center">Servicios</h4>
+              <div class="servicios-grid">
+                <label class="text-secondary font-weight-bold pr-2">SSA Servicio y Soporte Administrado</label>
+                <label class="text-secondary font-weight-bold">VMW Venue Monetization WiFi</label>
+                <a href="http://sitwifi.com/ssa">WiFi</a>
+                <a href="http://sitwifi.com/vmw">Sitwifi Station</a>
+                <a href="http://sitwifi.com/ssa">WiFi Móvil</a>
+                <a href="http://sitwifi.com/vmw">Sitwifi Premium</a>
+                <a href="http://sitwifi.com/ssa">CCTV</a>
+                <a href="http://sitwifi.com/vmw">Sitwifi Professional</a>
+                <a href="http://sitwifi.com/ssa" class="mb-4">GPON</a>
+                <h5 style="color: #ebeef2 !important;">Empty</h5>
+                <label class="text-secondary font-weight-bold">Telecom Management</label>
+                <label class="text-secondary font-weight-bold">Carriers</label>
+                <a href="http://sitwifi.com/telecom">Enlaces</a>
+                <a href="http://sitwifi.com/carriers">Carrier SSID´s</a>
+                <a href="http://sitwifi.com/telecom" class="except mt-1 mb-2">Ciberseguridad / Firewalls</a>
+                <a href="http://sitwifi.com/carriers" class="except mt-1 mb-2">Roaming & Data offload</a>
+                <a href="http://sitwifi.com/telecom">SD-WAN</a>
+              </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-6 col-md-4 col-sm-push-6 col-md-push-4 xs-box">
+
+          <div class="row d-flex justify-content-between mt-5 last-footer-1" >
+            <div class="">
+            <label class="text-secondary" for="copyright">2020 Sitwifi - Todos los derechos reservados &copy</label>
             </div>
-            <div class="col-sm-6 col-md-4 col-sm-pull-6 col-md-pull-4">
-                <p class="copyright">© Copyright SitWifi</p>
+            <div>
+              <ul class="list-unstyled list-inline f_list space_list lead social-networks">
+                <li class="list-inline-item"><a target="_blank" href="http://www.linkedin.com/company/sitwifi" class="fab fa-linkedin-in"></a></li>
+                <li class="list-inline-item"><a target="_blank" href="http://www.facebook.com/Sitwifi" class="fab fa-facebook-f"></a></li>
+                <li class="list-inline-item"><a target="_blank" href="http://www.instagram.com/sitwifi/" class="fab fa-instagram"></a></li>
+                <!--<li class="list-inline-item"><a target="_blank" href="http://twitter.com/sitwifi" class="fab fa-twitter"></a></li>-->
+                <li class="list-inline-item"><a target="_blank" href="http://www.youtube.com/channel/UClKE8Xz5QFfWT5B7qPgKRNw" class="fab fa-youtube"></a></li>
+              </ul>
             </div>
-        </div>
+            <div class="">
+              <ul class="list-unstyled list-inline f_list space_list">
+                <li class="list-inline-item"><a href="http://sitwifi.com/privacy">Aviso de privacidad</a></li>
+                <!--<li class="list-inline-item"><label>|</label></li>
+                <li class="list-inline-item"><a href="#">Aviso legal</a></li>-->
+              </ul>
+            </div>
+
+          </div>
+          <div class="last-footer-2 d-none">
+            <div class="text-center">
+              <div class="text-center social-networks">
+                  <a target="_blank" href="http://www.linkedin.com/company/sitwifi" class="fab fa-linkedin-in"></a>
+                  <a target="_blank" href="http://www.facebook.com/Sitwifi" class="fab fa-facebook-f"></a>
+                  <a target="_blank" href="http://www.instagram.com/sitwifi/" class="fab fa-instagram"></a>
+                  <!--<a target="_blank" href="http://twitter.com/sitwifi" class="fab fa-twitter"></a>-->
+                  <a target="_blank" href="http://www.youtube.com/channel/UClKE8Xz5QFfWT5B7qPgKRNw" class="fab fa-youtube"></a>
+              </div>
+              <div class="text-center footercitos">
+                  <label class="text-secondary" for="copyright">{{ 2020 }} Sitwifi - Todos los derechos reservados <i class="far fa-copyright"></i></label>
+              </div>
+              <div class="text-center footercitos">
+                  <a href="http://sitwifi.com/privacy_policy">Aviso de privacidad</a>
+                  <!--<label>&nbsp;|&nbsp;</label>
+                  <a href="#">Aviso legal</a>-->
+              </div>
+            </div>
+          </div>
+
     </div>
-</footer>
+</section>

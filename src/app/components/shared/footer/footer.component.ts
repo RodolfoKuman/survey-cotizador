@@ -12,4 +12,9 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  setIndustriaImageFooter(url : string){
+    let industria_footer = document.getElementById("IMG_industria"); 
+    industria_footer.setAttribute('src', url);
+  }
+
 }
